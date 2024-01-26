@@ -53,7 +53,6 @@ jobs:
           echo "::notice title=aws-region::${{ vars.AWS_REGION }}"
           echo "::notice title=environment::${{ inputs.environment }}"
           echo "aws-region=${{ vars.AWS_REGION }}" >> $GITHUB_OUTPUT
-          echo "aws-profile=default" >> $GITHUB_OUTPUT
           echo "aws-access-key-id=${{ secrets.AWS_ACCESS_KEY_ID }}" >> $GITHUB_OUTPUT
           echo "aws-secret-access-key=${{ secrets.AWS_SECRET_ACCESS_KEY }}" >> $GITHUB_OUTPUT
           echo "eks-cluster-name=${{ secrets.EKS_CLUSTER_NAME }}" >> $GITHUB_OUTPUT
@@ -125,7 +124,6 @@ jobs:
             -var enable_bucket_creation="${{ vars.ENABLE_BUCKET_CREATION }}" \
             -var enable_iam_resource_creation="${{ vars.ENABLE_IAM_RESOURCE_CREATION }}" \
             -var enable_rds_creation="${{ vars.ENABLE_RDS_CREATION }}" \
-            -var profile="${{ vars.PROFILE }}" \
             -var region="${{ steps.parameters.outputs.aws-region }}" \
             -var cluster_name="${{ steps.parameters.outputs.eks-cluster-name }}" \
             -var namespace="${{ vars.NAMESPACE }}" \
