@@ -29,6 +29,24 @@ jobs:
 
     env:
       KUBECTL_VERSION: v1.28.4
+      TF_VAR_objects_expiration_days: ${{ vars.OBJECTS_EXPIRATION_DAYS || 14 }}
+      TF_VAR_allocatedStorage: ${{ vars.ALLOCATED_STORAGE || 50 }}
+      TF_VAR_allowMajorVersionUpgrade: ${{ vars.ALLOW_MAJOR_VERSION_UPGRADE || false }}
+      TF_VAR_applyImmediately: ${{ vars.APPLY_IMMEDIATELY || true }}
+      TF_VAR_autoGeneratePassword: ${{ vars.AUTO_GENERATE_PASSWORD || true }}
+      TF_VAR_autoMinorVersionUpgrade: ${{ vars.AUTO_MINOR_VERSION_UPGRADE || true }}
+      TF_VAR_maxAllocatedStorage: ${{ vars.MAX_ALLOCATED_STORAGE || 14 }}
+      TF_VAR_backupRetentionPeriod: ${{ vars.BACKUP_RETENTION_PERIOD || 0 }}
+      TF_VAR_copyTagsToSnapshot: ${{ vars.COPY_TAGS_TO_SNAPSHOT || true }}
+      TF_VAR_multiAz: ${{ vars.MULTIAZ || false }}
+      TF_VAR_dbInstanceClass: ${{ vars.DB_INSTANCE_CLASS || 'db.m5.large' }}
+      TF_VAR_engine: ${{ vars.ENGINE || 'postgres' }}
+      TF_VAR_engineVersion: ${{ vars.ENGINE_VERSION || '14' }}
+      TF_VAR_port: ${{ vars.PORT || 5432 }}
+      TF_VAR_publiclyAccessible: ${{ vars.PUBLICLY_ACCESSIBLE || false }}
+      TF_VAR_skipFinalSnapshot: ${{ vars.SKIP_FINAL_SNAPSHOT || true }}
+      TF_VAR_storageEncrypted: ${{ vars.STORAGE_ENCRYPTED || true }}
+      TF_VAR_storageType: ${{ vars.STORAGE_TYPE || 'gp2' }}
 
     steps:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
@@ -50,6 +68,7 @@ jobs:
             echo "::error::AWS_ACCOUNT_ID is not set"
             exit 1
           fi
+          echo "🔧 Setting up environment parameters"
           echo "::notice title=aws-region::${{ vars.AWS_REGION }}"
           echo "::notice title=environment::${{ inputs.environment }}"
           echo "aws-region=${{ vars.AWS_REGION }}" >> $GITHUB_OUTPUT
@@ -104,13 +123,23 @@ jobs:
           enablePlugins: true
         if: vars.IS_CANARY == 'true' || github.event_name == 'workflow_dispatch' || startsWith(github.ref, 'refs/tags/v')
 
+      - name: Setup aws-auth kubectl plugin
+        run: |
+          echo "::notice title=kubectl version::${{ steps.setup-kubectl.outputs.kubectl-version }}"
+          echo "::notice title=krew version::${{ steps.setup-kubectl.outputs.krew-version }}"
+          kubectl krew install aws-auth
+          echo "::notice title=aws-auth version::$(kubectl aws-auth version)"
+        if: vars.IS_CANARY == 'true' || github.event_name == 'workflow_dispatch' || startsWith(github.ref, 'refs/tags/v')
+
       - name: Configure kubectl
         run: |
+          echo "🔨 Configuring kubectl"
           aws eks update-kubeconfig --region ${{ steps.parameters.outputs.aws-region }} --name ${{ steps.parameters.outputs.eks-cluster-name }}
           echo "$(kubectl get ns)"
 
       - name: Terraform destroy
         run: |
+          echo "⚠️ Running terraform implementation"
           terraform init \
             -backend-config="region=${{ steps.parameters.outputs.aws-region }}" \
             -backend-config="bucket=${{ steps.s3.outputs.bucket-name }}" \
@@ -134,5 +163,11 @@ jobs:
             -auto-approve
         working-directory: pre_deployment_addons
         if: vars.IS_CANARY == 'true' || github.event_name == 'workflow_dispatch' || startsWith(github.ref, 'refs/tags/v')
+
+      - name: Reverting aws-auth configmap
+        run: |
+          echo "➖ Removing admin user RBAC privileges"
+          kubectl aws-auth remove --mapusers --userarn arn:aws:iam::${{ vars.AWS_ACCOUNT_ID }}:user/${{ vars.NAMESPACE }}-admin-user
+        if: ${{ vars.ENABLE_IAM_RESOURCE_CREATION == 'true' }}
 
       - run: echo "🍏 This job's status is ${{ job.status }}."
