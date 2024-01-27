@@ -28,12 +28,12 @@ Go to `Repository` 👉 `Settings` 👉 `Environments`
     <tr>
         <th>✔️ 🔒 AWS_ACCESS_KEY_ID</th>
         <th rowspan=3>secret</th>
-        <td>Access key of an AWS IAM user with S3 backend configuration access</td>
+        <td>Access key of an AWS IAM user with backend configuration access</td>
         <td rowspan=2><a href="https://github.com/philips-internal/HSP_PS_IAMDEVOPS/blob/fr_721_fiesta/TFSTATEVERSIONING.md#secret_key" target="_blank">Fetching creds</a></td>
     </tr>
     <tr>
         <th>✔️ 🔒  AWS_SECRET_ACCESS_KEY</th>
-        <td>Secret Access key of an AWS IAM user with S3 backend configuration access</td>
+        <td>Secret Access key of an AWS IAM user with backend configuration access</td>
     </tr>
     <tr>
         <th>✔️ 🔒  EKS_CLUSTER_NAME</th>
