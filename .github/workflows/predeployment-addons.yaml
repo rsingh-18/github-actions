@@ -168,6 +168,6 @@ jobs:
         run: |
           echo "📌 Giving admin user RBAC privileges"
           kubectl aws-auth upsert --mapusers --userarn arn:aws:iam::${{ vars.AWS_ACCOUNT_ID }}:user/${{ vars.NAMESPACE }}-admin-user --username ${{ vars.NAMESPACE }}-admin-user --groups eng-iam-hsdp:${{ vars.NAMESPACE }}:full-access-namespace-group
-        if: vars.ENABLE_IAM_RESOURCE_CREATION
+        if: vars.ENABLE_IAM_RESOURCE_CREATION == 'true'
 
       - run: echo "🍏 This job's status is ${{ job.status }}."
