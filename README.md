@@ -55,7 +55,7 @@ Go to `Repository` 👉 `Settings` 👉 `Environments`
     </tr>
     <tr>
         <th>✔️ 🔒  ENABLE_BUCKET_CREATION</th>
-        <td rowpan=4><a href="https://github.com/philips-internal/HSP_PS_IAMDEVOPS/tree/fr_721_fiesta/fiesta_addons/pre_deployment_addons#resources--modules-overview" target="_blank">Module flags</a></td>
+        <td rowspan=4><a href="https://github.com/philips-internal/HSP_PS_IAMDEVOPS/tree/fr_721_fiesta/fiesta_addons/pre_deployment_addons#resources--modules-overview" target="_blank">Module flags</a></td>
     </tr>
     <tr>
         <th>✔️ 🔒  ENABLE_IAM_RESOURCE_CREATION</th>
