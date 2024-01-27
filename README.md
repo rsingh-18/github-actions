@@ -132,7 +132,7 @@ Go to `Repository` 👉 `Settings` 👉 `Environments`
 
 ## Running Workflows
 1. Go to `Repository` 👉 `Actions`
-2. Select workflow 💡
+2. Select one of the follwing workflows to run 💡
     - `Predeployment Addons`
     - `Delete Predeployment Addons`
 3. Click on `Run workflow` 👉 Type the `environment` name 👉 `Run Workflow`
