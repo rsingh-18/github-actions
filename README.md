@@ -72,7 +72,7 @@ Go to `Repository` 👉 `Settings` 👉 `Environments`
     </tr>
     <tr>
         <th>✔️ 🔒  RDS_CA_CERTIFICATE_IDENTIFIER</th>
-        <td rowspan=18>--</td>
+        <td rowspan=19>--</td>
     </tr>
     <tr>
         <th>🍒 🔓  OBJECTS_EXPIRATION_DAYS</th>
