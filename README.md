@@ -14,7 +14,7 @@ Go to `Repository` 👉 `Settings` 👉 `Environments`
     
     
     1. ✔️ 🔒  - required inputs
-    2. 🍒 🔓  - inputs to override defaults
+    2. ❎ 🔓  - inputs to override defaults
 </details>
 
 #### Variables / Secrets to add
@@ -75,58 +75,58 @@ Go to `Repository` 👉 `Settings` 👉 `Environments`
         <td rowspan=19>--</td>
     </tr>
     <tr>
-        <th>🍒 🔓  OBJECTS_EXPIRATION_DAYS</th>
+        <th>❎ 🔓  OBJECTS_EXPIRATION_DAYS</th>
     </tr>
     <tr>
-        <th>🍒 🔓  ALLOCATED_STORAGE</th>
+        <th>❎ 🔓  ALLOCATED_STORAGE</th>
     </tr>
     <tr>
-        <th>🍒 🔓  ALLOW_MAJOR_VERSION_UPGRADE</th>
+        <th>❎ 🔓  ALLOW_MAJOR_VERSION_UPGRADE</th>
     </tr>
     <tr>
-        <th>🍒 🔓  APPLY_IMMEDIATELY</th>
+        <th>❎ 🔓  APPLY_IMMEDIATELY</th>
     </tr>
     <tr>
-        <th>🍒 🔓  AUTO_GENERATE_PASSWORD</th>
+        <th>❎ 🔓  AUTO_GENERATE_PASSWORD</th>
     </tr>
     <tr>
-        <th>🍒 🔓  AUTO_MINOR_VERSION_UPGRADE</th>
+        <th>❎ 🔓  AUTO_MINOR_VERSION_UPGRADE</th>
     </tr>
     <tr>
-        <th>🍒 🔓  MAX_ALLOCATED_STORAGE</th>
+        <th>❎ 🔓  MAX_ALLOCATED_STORAGE</th>
     </tr>
     <tr>
-        <th>🍒 🔓  BACKUP_RETENTION_PERIOD</th>
+        <th>❎ 🔓  BACKUP_RETENTION_PERIOD</th>
     </tr>
     <tr>
-        <th>🍒 🔓  COPY_TAGS_TO_SNAPSHOT</th>
+        <th>❎ 🔓  COPY_TAGS_TO_SNAPSHOT</th>
     </tr>
     <tr>
-        <th>🍒 🔓  MULTIAZ</th>
+        <th>❎ 🔓  MULTIAZ</th>
     </tr>
     <tr>
-        <th>🍒 🔓  DB_INSTANCE_CLASS</th>
+        <th>❎ 🔓  DB_INSTANCE_CLASS</th>
     </tr>
     <tr>
-        <th>🍒 🔓  ENGINE</th>
+        <th>❎ 🔓  ENGINE</th>
     </tr>
     <tr>
-        <th>🍒 🔓  ENGINE_VERSION</th>
+        <th>❎ 🔓  ENGINE_VERSION</th>
     </tr>
     <tr>
-        <th>🍒 🔓  PORT</th>
+        <th>❎ 🔓  PORT</th>
     </tr>
     <tr>
-        <th>🍒 🔓  PUBLICLY_ACCESSIBLE</th>
+        <th>❎ 🔓  PUBLICLY_ACCESSIBLE</th>
     </tr>
     <tr>
-        <th>🍒 🔓  SKIP_FINAL_SNAPSHOT</th>
+        <th>❎ 🔓  SKIP_FINAL_SNAPSHOT</th>
     </tr>
     <tr>
-        <th>🍒 🔓  STORAGE_ENCRYPTED</th>
+        <th>❎ 🔓  STORAGE_ENCRYPTED</th>
     </tr>
     <tr>
-        <th>🍒 🔓  STORAGE_TYPE</th>
+        <th>❎ 🔓  STORAGE_TYPE</th>
     </tr>
 </table>
 
