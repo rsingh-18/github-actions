@@ -144,7 +144,7 @@ jobs:
             -backend-config="region=${{ steps.parameters.outputs.aws-region }}" \
             -backend-config="bucket=${{ steps.s3.outputs.bucket-name }}" \
             -backend-config="dynamodb_table=${{ steps.dynamodb.outputs.table-name }}" \
-            -backend-config="key=${{ steps.parameters.outputs.aws-region }}/${{ steps.parameters.outputs.eks-cluster-name }}/pre_deployment_addons/${{ vars.NAMESPACE }}/terraform.tfstate" \
+            -backend-config="key=${{ steps.parameters.outputs.aws-region }}/pre_deployment_addons/${{ vars.NAMESPACE }}/terraform.tfstate" \
             -backend-config="access_key=${{ steps.parameters.outputs.aws-access-key-id }}" \
             -backend-config="secret_key=${{ steps.parameters.outputs.aws-secret-access-key }}"
           
